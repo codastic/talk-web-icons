@@ -66,8 +66,7 @@
                     <h3>Needs in REST API design</h3>
                     <ul>
                         <li>
-                            well-defined, separated resource definitions<br>
-                            →  Separation of concerns!</li>
+                            well-defined, separated resource definitions
                         <li>
                             The more fine-grained the resources are,
                             the higher the flexibility of the API.</li>
@@ -99,10 +98,6 @@
                 </section>
 
                 <section>
-                    <h1>Not at all!</h1>
-                </section>
-
-                <section>
                     <h2>Batch API design</h2>
                     <p>
                         What if we could just use one HTTP request for multiple API requests
@@ -115,10 +110,6 @@
                     <p>
                         “We call it a batch proxy”
                     </p>
-
-                    <aside class="notes">
-                        TODO
-                    </aside>
                 </section>
 
                 <section>
@@ -163,11 +154,11 @@
                 <section>
                     <h3>Example Request</h3>
                     <pre><code data-trim>POST /batch HTTP/1.1</code></pre>
-                    <p>Request playload:</p>
+                    <p>Request body:</p>
                     <pre><code data-trim class="lang-json">
 {"batch": [
-    {"url": "/user/1234", "method": "GET"},
-    {"url": "/user/1234/friends", "method": "GET"}]
+    {"path": "/user/1234", "method": "GET"},
+    {"path": "/user/1234/friends", "method": "GET"}]
 }
                     </code></pre>
                 </section>
@@ -176,7 +167,7 @@
                     <h3>Example Response</h3>
                     <pre><code data-trim class="lang-json">
 [{
-    "request": {"url": "/user/1234", "method": "GET", "headers": {}},
+    "request": {"path": "/user/1234", "method": "GET", "headers": {}},
     "response": {
         "headers": {
             "content-type": "application/json",
@@ -188,10 +179,10 @@
             "last_name": "Doe",
             "email": "john@doe.com"
         },
-        "statusCode": 200
+        "status": 200
     }
 }, {
-    "request": {"url": "/user/1234/friends", "method": "GET", "headers": {}},
+    "request": {"path": "/user/1234/friends", "method": "GET", "headers": {}},
     "response": {
         "headers": {
             "content-type": "application/json",
@@ -205,7 +196,7 @@
                 1238
             ]
         },
-        "statusCode": 200
+        "status": 200
     }
 }]
                     </code></pre>
@@ -218,12 +209,15 @@
 var PORT = 8080;
 
 var express = require('express'),
-    batchProxy = require('batch-proxy');
+    bodyParser = require('body-parser'),
+    batchProxy = require('express-batch-proxy');
 
 var app = express();
-var batch = batchProxy(PORT);
+app.use(bodyParser.json());
 
-app.post('/batch', batch.controller);
+/* ... other controllers */
+
+app.post('/batch', batchProxy(PORT));
 
 app.listen(PORT);
                     </code></pre>
@@ -234,18 +228,25 @@ app.listen(PORT);
                     <p>Or as standalone app pointing to a different host:</p>
                     <pre><code data-trim class="lang-js">
 var PORT = 8080;
-var HOST = 'another-host.com'
+var HOST = 'another-host.com';
 
 var express = require('express'),
-    batchProxy = require('batch-proxy');
+    bodyParser = require('body-parser'),
+    batchProxy = require('express-batch-proxy');
 
 var app = express();
-var batch = batchProxy(PORT, HOST);
+app.use(bodyParser.json());
 
-app.post('/batch', batch.controller);
+app.post('/batch', batchProxy(PORT, HOST));
 
-app.listen(PORT);
+app.listen(8080);
                     </code></pre>
+                </section>
+
+                <section>
+                    <p>Backend code available at Github</p>
+                    <h2>http://bit.ly/1q8mQiV</h2>
+                    <p><small><a href="https://github.com/codastic/express-batch-proxy">https://github.com/codastic/express-batch-proxy</a></small></p>
                 </section>
 
                 <section>
