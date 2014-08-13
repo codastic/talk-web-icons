@@ -237,6 +237,11 @@ body {
     height: 0;
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1); }
+  .reveal .highlighted {
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .08em; }
 
 /* Highlight state
  * ------------------------------------
