@@ -4,9 +4,9 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Batch API with REST</title>
+        <title>Web icon pain killer</title>
 
-        <meta name="description" content="Codastic - a web agency offering full stack web application development">
+        <meta name="description" content="Utilizing pixel-based icons in the era of responsive web design and retina displays is pointless. But the often used icon fonts approach has several disadvantages, too. To make them look the same on different devices and operating systems can be a pain. This talk introduces you to a more modern web icon approach. ">
         <meta name="author" content="Mario Volke &amp; Christian Ranz">
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -46,13 +46,13 @@
                     <p>
                         <img src="assets/signet_reduced.svg" width="100px" height="100px">
                     </p>
-                    <h1>Batch API</h1>
-                    <p>REST API design for the real life</p>
+                    <h1>Web icon<br>pain killer</h1>
+                    <p>An modern approach to handling icons in web frontends</p>
                     <p>
                         <small>
                             Mario Volke /
-                            Munich NodeJS User Group /
-                            13. August 2014
+                            JavaScript UserGroup Munich /
+                            8. January 2015
                         </small>
                     </p>
                     <p>
@@ -70,206 +70,137 @@
                 </section>
 
                 <section>
-                    <h3>Needs in REST API design</h3>
+                    <h3>Why talking about this in a JavaScript user group</h3>
                     <ul>
                         <li>
-                            well-defined, separated resource definitions
+                            Icons are everywhere
+                        </li>
                         <li>
-                            The more fine-grained the resources are,
-                            the higher the flexibility of the API.</li>
+                            You need workflows in your team that work for everyone
+                        </li>
+                        <li>
+                            You need to define a workflow for your icons, too
+                        </li>
                     </ul>
                 </section>
 
                 <section>
-                    <h3>Needs in application design</h3>
-                    <ul>
-                        <li>
-                            fast responses to user input<br>
-                            →  minimize the number of requests to the API</li>
-                    </ul>
-                    <hr>
+                    <h3>First of all</h3>
                     <p>
-                        What if the app needs data or has to manipulate data
-                        from multiple resources at the same time?
+                        Stop using icon fonts!
                     </p>
-
                     <aside class="notes">
-                        Application bootup often needs a lot of data from multiple resources before anything senseful can be displayed.
+                        Or event worse pixel based icons, you know, retina support is a mess and giving the same icon different colors...
                     </aside>
                 </section>
 
                 <section>
-                    <p>fine-grained resources <strong>VS</strong> number of requests</p>
-                    <hr>
-                    <p><strong>Contradiction? Tradeoff?</strong></p>
-                </section>
-
-                <section>
-                    <h2>Batch API design</h2>
+                    <h3>To be more precise</h3>
                     <p>
-                        What if we could just use one HTTP request for multiple API requests
-                        and let the backend handle them in parallel?<br>
+                        <strong>If you are on IE9+</strong> stop using icon fonts!
                     </p>
                 </section>
 
                 <section>
-                    <img src="assets/architecture.svg" alt="Batch API architecture">
+                    <h3>Why?</h3>
                     <p>
-                        “We call it a batch proxy”
+                        Because <a href="http://css-tricks.com/icon-fonts-vs-svg/">Chris Coyier</a> says so...
                     </p>
                 </section>
 
                 <section>
-                    <p>Fulfills several nice architectural properties:</p>
+                    <h3>Icon fonts have problems</h3>
                     <ul>
-                        <li class="fragment">Separation of concerns</li>
-                        <li class="fragment">Scalability</li>
-                        <li class="fragment">Reusability</li>
-                        <li class="fragment">Cacheability</li>
-                        <li class="fragment">Performance</li>
+                        <li class="fragment">Workflow integration is complex</li>
+                        <li class="fragment">Aliasing and sharpness is different in each browser/system</li>
+                        <li class="fragment">Positioning icon fonts is hard</li>
+                        <li class="fragment">If your font doesn’t load you’ll see ugly characters</li>
+                        <li class="fragment">It is againts HTML semantics and accessibility</li>
                     </ul>
-
                     <aside class="notes">
+                        If there is time talk more about those points, e.g. with examples.
                         <ul>
-                        <li>
-                            <strong>Separation of concerns</strong><br>
-                            The REST API doesn’t need to know anything about the existence
-                            of the Batch API because of the layered architecture</li>
-                        <li>
-                            <strong>Scalability</strong><br>
-                            REST API and Batch API can be scaled individually
-                        </li>
-                        <li>
-                            <strong>Reusability</strong><br>
-                            Batch API doesn’t need to know anything about the business logic of the REST API.
-                        </li>
-                        <li>
-                            <strong>Cacheability</strong><br>
-                            HTTP cache between REST API and Batch API is possible.
-                            Cache between Batch API and frontend in theory only if none of the batched requests contains a modification of the data.
-                        </li>
-                        <li>
-                            <strong>Performance</strong><br>
-                            Batch API can send all requests to the REST API in parallel.
-                            It has to wait for all responses from the REST API before it can respond to the frontend.<br>
-                            → response time of Batch API request = max response time of REST API requests
-                        </li>
-                    </ul>
+                            <li>
+                                There are tools like iconmoon but they are not really integrated into your grunt/gulp workflow.
+                                What if you wanna change individual icons? Its a mess.
+                            </li>
+                        </ul>
                     </aside>
                 </section>
 
                 <section>
-                    <h3>Example Request</h3>
-                    <pre><code data-trim>POST /batch HTTP/1.1</code></pre>
-                    <p>Request body:</p>
-                    <pre><code data-trim class="lang-json">
-{"batch": [
-    {"path": "/user/1234", "method": "GET"},
-    {"path": "/user/1234/friends", "method": "GET"}]
-}
-                    </code></pre>
+                    <h3>Inline SVG</h3>
+                    <aside class="notes">
+                        explain what inline svg is, with code example
+                    </aside>
                 </section>
 
                 <section>
-                    <h3>Example Response</h3>
-                    <pre><code data-trim class="lang-json">
-[{
-    "request": {"path": "/user/1234", "method": "GET", "headers": {}},
-    "response": {
-        "headers": {
-            "content-type": "application/json",
-            "content-length": 2233
-        },
-        "body": {
-            "id": 1234,
-            "first_name": "John",
-            "last_name": "Doe",
-            "email": "john@doe.com"
-        },
-        "status": 200
-    }
-}, {
-    "request": {"path": "/user/1234/friends", "method": "GET", "headers": {}},
-    "response": {
-        "headers": {
-            "content-type": "application/json",
-            "content-length": 2233
-        },
-        "body": {
-            data: [
-                1235,
-                1236,
-                1237,
-                1238
-            ]
-        },
-        "status": 200
-    }
-}]
-                    </code></pre>
+                    <h3>The magic: &lt;use&gt;</h3>
+                    <aside class="notes">
+                        Example with use.
+                        Advantage: icons only embedded once, but can be used multiple times
+                        Attention: Chrome only supports symbols which came before in the DOM order.
+                    </aside>
                 </section>
 
                 <section>
-                    <h2>Backend Implementation</h2>
-                    <p>Easy integration into any existing Express app:</p>
-                    <pre><code data-trim class="lang-js">
-var PORT = 8080;
-
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    batchProxy = require('express-batch-proxy');
-
-var app = express();
-app.use(bodyParser.json());
-
-/* ... other controllers */
-
-app.post('/batch', batchProxy(PORT));
-
-app.listen(PORT);
-                    </code></pre>
+                    <h3>Packing the icons</h3>
+                    <aside class="notes">
+                        1) grunt-svgstore
+                        2) inline it into the top of body
+                        3) problem every page contains bloat of icons, caching of icons between pages not possible
+                    </aside>
                 </section>
 
                 <section>
-                    <h2>Backend Implementation (2)</h2>
-                    <p>Or as standalone app pointing to a different host:</p>
-                    <pre><code data-trim class="lang-js">
-var PORT = 8080;
-var HOST = 'another-host.com';
-
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    batchProxy = require('express-batch-proxy');
-
-var app = express();
-app.use(bodyParser.json());
-
-app.post('/batch', batchProxy(PORT, HOST));
-
-app.listen(8080);
-                    </code></pre>
+                    <h3>You can &lt;use&gt; URLs, too</h3>
+                    <aside class="notes">
+                        1) example how to use full URLs
+                        2) problem: doesn't work in IE
+                        3) but we can polyfill that
+                    </aside>
                 </section>
 
                 <section>
-                    <p>Backend code available at Github</p>
-                    <h2>http://bit.ly/1q8mQiV</h2>
-                    <p><small><a href="https://github.com/codastic/express-batch-proxy">https://github.com/codastic/express-batch-proxy</a></small></p>
+                    <h3>svg4everybody</h3>
+                    <aside class="notes">
+                        explain the polyfill
+                    </aside>
                 </section>
 
                 <section>
-                    <h2>Frontend Usage</h2>
-                    <p>Example using a batch proxy jQuery plugin:</p>
-                    <pre><code data-trim class="lang-js">
-var batch = $.batch('http://host:8080/batch');
+                    <h3>Our grunt workflow</h3>
+                    <aside class="notes">
+                        - folder with svg icons
+                        - grunt-svgmin (because illustrator exports a lot of crap)
+                        - grunt-svgstore
+                        - and svg4everybody
+                    </aside>
+                </section>
 
-$.ajax('/user/1234', { type: 'GET', batch: batch })
-    .done(function(data) { ... });
-$.ajax('/user/1234/friends', { type: 'GET', batch: batch })
-    .done(function(data) { ... });
+                <section>
+                    <h3>ARIA for web icons</h3>
+                    <aside class="notes">
+                        some small example how to use ARIA for web icons.
+                        if there is not enough time skip this section.
+                    </aside>
+                </section>
 
-batch.commit();
-                    </code></pre>
-                    <p><small>Our own implementation is currently build on top of AngularJS. But the implemented API is quite similar.</small></p>
+                <section>
+                    <h3>Giving your icon colors and strokes</h3>
+                    <aside class="notes">
+                        show how to set fill and stroke with css
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>currentColor</h3>
+                    <aside class="notes">
+                        example utilizing CSS currentColor:
+                        fill: currentColor
+                        to inherit text color
+                    </aside>
                 </section>
 
                 <section data-state="highlight">
