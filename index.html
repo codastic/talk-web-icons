@@ -34,9 +34,42 @@
         <!--[if lt IE 9]>
         <script src="lib/js/html5shiv.js"></script>
         <![endif]-->
+
+        <style>
+            .colored-icons svg {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                fill: #66cc33;
+            }
+            .colored-icons svg:first-child {
+                fill: #CC5C33;
+            }
+            .colored-icons svg:last-child {
+                fill: #3375CC;
+            }
+        </style>
     </head>
 
     <body>
+
+        <!-- inline icons have to come first, hide immediately with inline styles -->
+        <div style="width: 0; height: 0; visibility: hidden;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <symbol id="some-icon" viewBox="0 0 100 100" enable-background="new 0 0 100 100">
+                    <path d="M50,97.137c-1.402,0-2.786-0.371-4-1.072L12.106,76.497c-2.467-1.424-4-4.079-4-6.928V30.432c0-2.849,1.533-5.504,4-6.928  L46,3.935c2.429-1.402,5.571-1.402,8,0l33.894,19.568c2.467,1.424,4,4.079,4,6.928v39.137c0,2.849-1.533,5.504-4,6.928L54,96.065  C52.786,96.766,51.402,97.137,50,97.137z M50,6.863c-0.701,0-1.393,0.185-2,0.536L14.106,26.967c-1.234,0.712-2,2.04-2,3.464v39.137  c0,1.425,0.766,2.752,2,3.464L48,92.601c1.215,0.701,2.785,0.701,4,0l33.894-19.568c1.234-0.712,2-2.04,2-3.464V30.432  c0-1.425-0.766-2.752-2-3.464L52,7.399C51.393,7.048,50.701,6.863,50,6.863z"/>
+                    <rect x="40.115" y="48.379" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 135.5746 44.8431)" width="36.77" height="4.243"/>
+                    <rect x="29.808" y="51.879" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 28.3934 119.7609)" width="18.385" height="4.243"/>
+                </symbol>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <symbol id="multicolor-icon" viewBox="0 0 100 100" enable-background="new 0 0 100 100">
+                    <path d="M50,97.137c-1.402,0-2.786-0.371-4-1.072L12.106,76.497c-2.467-1.424-4-4.079-4-6.928V30.432c0-2.849,1.533-5.504,4-6.928  L46,3.935c2.429-1.402,5.571-1.402,8,0l33.894,19.568c2.467,1.424,4,4.079,4,6.928v39.137c0,2.849-1.533,5.504-4,6.928L54,96.065  C52.786,96.766,51.402,97.137,50,97.137z M50,6.863c-0.701,0-1.393,0.185-2,0.536L14.106,26.967c-1.234,0.712-2,2.04-2,3.464v39.137  c0,1.425,0.766,2.752,2,3.464L48,92.601c1.215,0.701,2.785,0.701,4,0l33.894-19.568c1.234-0.712,2-2.04,2-3.464V30.432  c0-1.425-0.766-2.752-2-3.464L52,7.399C51.393,7.048,50.701,6.863,50,6.863z"/>
+                    <rect style="fill: currentColor;" x="40.115" y="48.379" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 135.5746 44.8431)" width="36.77" height="4.243"/>
+                    <rect style="fill: currentColor;" x="29.808" y="51.879" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 28.3934 119.7609)" width="18.385" height="4.243"/>
+                </symbol>
+            </svg>
+        </div>
 
         <div class="reveal">
 
@@ -44,7 +77,7 @@
             <div class="slides">
                 <section data-state="highlight">
                     <p>
-                        <img src="assets/signet_reduced.svg" width="100px" height="100px">
+                        <img src="assets/signet_reduced.svg" style="width: 100px; height:100px;" alt="Codastic">
                     </p>
                     <h1>Web icon<br>pain killer</h1>
                     <p>An modern approach to handling icons in web frontends</p>
@@ -63,7 +96,7 @@
                 </section>
 
                 <section>
-                    <img src="assets/logo.svg" width="500px">
+                    <img src="assets/logo.svg" style="width: 500px;" alt="Codastic">
                     <p class="highlighted">
                         We are a <strong>web agency</strong> offering full stack <strong>web application development</strong>.
                     </p>
@@ -84,32 +117,40 @@
                     </ul>
                 </section>
 
-                <section>
-                    <h3>First of all</h3>
+                <section data-background="assets/dead_end.jpg">
+                    <p>First of all</p>
+                    <h1>Stop</h1>
+                    <h3>using icon fonts!</h3>
                     <p>
-                        Stop using icon fonts!
+                        <br><br><br><br><br><br>
                     </p>
                     <aside class="notes">
-                        Or event worse pixel based icons, you know, retina support is a mess and giving the same icon different colors...
+                        Or even worse pixel based icons, you know, retina support is a mess and giving the same icon different colors...
                     </aside>
                 </section>
 
-                <section>
-                    <h3>To be more precise</h3>
+                <section data-background="assets/dead_end.jpg">
+                    <h2>To be more precise</h2>
                     <p>
                         <strong>If you are on IE9+</strong> stop using icon fonts!
                     </p>
-                </section>
-
-                <section>
-                    <h3>Why?</h3>
                     <p>
-                        Because <a href="http://css-tricks.com/icon-fonts-vs-svg/">Chris Coyier</a> says so...
+                        <br><br><br><br><br><br>
                     </p>
                 </section>
 
                 <section>
-                    <h3>Icon fonts have problems</h3>
+                    <h2>Why?</h2>
+                    <p>
+                        Because Chris Coyier says so...
+                    </p>
+                    <p>
+                        <small><a href="http://css-tricks.com/icon-fonts-vs-svg/">http://css-tricks.com/icon-fonts-vs-svg/</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Icon fonts have problems</h2>
                     <ul>
                         <li class="fragment">Workflow integration is complex</li>
                         <li class="fragment">Aliasing and sharpness is different in each browser/system</li>
@@ -129,23 +170,77 @@
                 </section>
 
                 <section>
-                    <h3>Inline SVG</h3>
+                    <h2>Inline SVG</h2>
+                    <p>
+                        <svg style="width: 100px; height: 100px;"
+                            viewBox="0 0 100 100"
+                            enable-background="new 0 0 100 100">
+                            <path d="M50,97.137c-1.402,0-2.786-0.371-4-1.072L12.106,76.497c-2.467-1.424-4-4.079-4-6.928V30.432c0-2.849,1.533-5.504,4-6.928  L46,3.935c2.429-1.402,5.571-1.402,8,0l33.894,19.568c2.467,1.424,4,4.079,4,6.928v39.137c0,2.849-1.533,5.504-4,6.928L54,96.065  C52.786,96.766,51.402,97.137,50,97.137z M50,6.863c-0.701,0-1.393,0.185-2,0.536L14.106,26.967c-1.234,0.712-2,2.04-2,3.464v39.137  c0,1.425,0.766,2.752,2,3.464L48,92.601c1.215,0.701,2.785,0.701,4,0l33.894-19.568c1.234-0.712,2-2.04,2-3.464V30.432  c0-1.425-0.766-2.752-2-3.464L52,7.399C51.393,7.048,50.701,6.863,50,6.863z"/>
+                            <rect x="40.115" y="48.379" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 135.5746 44.8431)" width="36.77" height="4.243"/>
+                            <rect x="29.808" y="51.879" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 28.3934 119.7609)" width="18.385" height="4.243"/>
+                        </svg>
+                    </p>
+                    <pre><code data-trim class="xml" style="max-height: 10em;">
+&lt;div class="somewhere-in-your-markup"&gt;
+    &lt;svg style="width: 100px; height: 100px;"
+        viewBox="0 0 100 100"
+        enable-background="new 0 0 100 100"&gt;
+        &lt;path d="M50,97.137c-1.402,0-2.786-0.371-4-1.072L12.106,76.497c-2.467-1.424-4-4.079-4-6.928V30.432c0-2.849,1.533-5.504,4-6.928  L46,3.935c2.429-1.402,5.571-1.402,8,0l33.894,19.568c2.467,1.424,4,4.079,4,6.928v39.137c0,2.849-1.533,5.504-4,6.928L54,96.065  C52.786,96.766,51.402,97.137,50,97.137z M50,6.863c-0.701,0-1.393,0.185-2,0.536L14.106,26.967c-1.234,0.712-2,2.04-2,3.464v39.137  c0,1.425,0.766,2.752,2,3.464L48,92.601c1.215,0.701,2.785,0.701,4,0l33.894-19.568c1.234-0.712,2-2.04,2-3.464V30.432  c0-1.425-0.766-2.752-2-3.464L52,7.399C51.393,7.048,50.701,6.863,50,6.863z"/&gt;
+        &lt;rect x="40.115" y="48.379"
+            transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 135.5746 44.8431)"
+            width="36.77" height="4.243"/&gt;
+        &lt;rect x="29.808" y="51.879"
+            transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 28.3934 119.7609)"
+            width="18.385" height="4.243"/&gt;
+    &lt;/svg&gt;
+&lt;/div&gt;
+                    </code></pre>
                     <aside class="notes">
-                        explain what inline svg is, with code example
+                        1) explain what inline svg is
+                        2) but why inline svg: because we don't want to use the img-tag for non-content images and one request per icon is not good enough
                     </aside>
                 </section>
 
                 <section>
-                    <h3>The magic: &lt;use&gt;</h3>
+                    <h2>Just use &lt;use&gt;</h2>
+                    <p>includes existing SVG symbols</p>
+                    <pre><code data-trim class="xml">
+<!-- SVG spritemap somewhere up in the DOM -->
+&lt;div style="width: 0; height: 0; visibility: hidden;"&gt;
+    &lt;svg&gt;
+        &lt;symbol id="some-icon"&gt;...&lt;/symbol&gt;
+    &lt;/svg&gt;
+&lt;/div&gt;
+<!-- actual usage -->
+&lt;svg&gt;&lt;use xlink:href="#some-icon" /&gt;&lt;/svg&gt;
+                    </code></pre>
+                    <p><small>Attention: Chrome only supports symbols which come before its usage in the DOM order</small></p>
                     <aside class="notes">
-                        Example with use.
-                        Advantage: icons only embedded once, but can be used multiple times
-                        Attention: Chrome only supports symbols which came before in the DOM order.
+                        1) Problem: don't want to embed the same icon twice
+                        2) Explain use
+                        3) Advantage: icons only embedded once, but can be used multiple times
+                        4) Attention: Chrome only supports symbols which come before its usage in the DOM order.
+                        5) Problem: not really cacheable because icons are embedded on every page
                     </aside>
                 </section>
 
                 <section>
-                    <h3>Packing the icons</h3>
+                    <p>Building an SVG spritemap with</p>
+                    <h2>grunt-svgstore</h2>
+                    <pre><code data-trim class="xml">
+grunt.initConfig({
+  svgstore: {
+    options: {},
+    default : {
+      files: {
+        'dest/icons.svg': ['svgs/*.svg'],
+      },
+    },
+  },
+});
+                    </code></pre>
+                    <p>Then inline <em>dest/icons.svg</em> into the top of <em>&lt;body&gt;</em></p>
+                    <p><small>There is also gulp-svgstore.</small></p>
                     <aside class="notes">
                         1) grunt-svgstore
                         2) inline it into the top of body
@@ -154,7 +249,16 @@
                 </section>
 
                 <section>
-                    <h3>You can &lt;use&gt; URLs, too</h3>
+                    <h2>You can &lt;use&gt; URLs, too</h2>
+                    <pre><code data-trim class="xml">
+&lt;svg&gt;&lt;use xlink:href="assets/icons.svg#some-icon" /&gt;&lt;/svg&gt;
+                    </code></pre>
+                    <p>
+                        <strong>Pros:</strong> Only one request for all icons,<br>icons.svg cached by browser
+                    </p>
+                    <p>
+                        <strong>But:</strong> No IE support at all!
+                    </p>
                     <aside class="notes">
                         1) example how to use full URLs
                         2) problem: doesn't work in IE
@@ -163,44 +267,107 @@
                 </section>
 
                 <section>
-                    <h3>svg4everybody</h3>
+                    <p>There’s a polyfill for Internet Explorer</p>
+                    <h2>svg4everybody</h2>
+                    <p><small><a href="https://github.com/jonathantneal/svg4everybody">https://github.com/jonathantneal/svg4everybody</a></small></p>
                     <aside class="notes">
                         explain the polyfill
                     </aside>
                 </section>
 
                 <section>
-                    <h3>Our grunt workflow</h3>
-                    <aside class="notes">
-                        - folder with svg icons
-                        - grunt-svgmin (because illustrator exports a lot of crap)
-                        - grunt-svgstore
-                        - and svg4everybody
-                    </aside>
+                    <h2>Our grunt workflow</h2>
+                    <ol>
+                        <li class="fragment">Folder with SVG icons</li>
+                        <li class="fragment">grunt-svgmin (because Adobe Illustrator exports a lot of crap)</li>
+                        <li class="fragment">grunt-svgstore</li>
+                        <li class="fragment">and svg4everybody</li>
+                    </ol>
                 </section>
 
                 <section>
-                    <h3>ARIA for web icons</h3>
+                    <h2>Accessibility</h2>
+                    <p>Within a spritemap, each symbol can have a <em>&lt;title&gt;</em></p>
+                    <pre><code data-trim class="xml">
+&lt;symbol id="some-icon"&gt;&lt;title&gt;Some icon&lt;/title&gt;&lt;path etc.../&gt;&lt;/symbol&gt;
+                    </code></pre>
+                    <p>Give the <em>&lt;svg&gt;</em> a title</p>
+                    <pre><code data-trim class="xml">
+&lt;svg title="Some icon"&gt;&lt;use xlink:href="icons.svg#some-icon"&gt;&lt;/use&gt;&lt;/svg&gt;
+                    </code></pre>
                     <aside class="notes">
-                        some small example how to use ARIA for web icons.
                         if there is not enough time skip this section.
                     </aside>
                 </section>
 
                 <section>
-                    <h3>Giving your icon colors and strokes</h3>
+                    <h2>ARIA roles</h2>
+                    <p>If your icon just decorates other content:</p>
+                    <pre><code data-trim class="xml">
+&lt;a href="..."&gt;&lt;svg role="presentation"&gt;&lt;use xlink:href="icons.svg#twitter"&gt;&lt;/svg&gt;
+    Find us on Twitter
+&lt;/a&gt;
+                    </code></pre>
+                    <p>Or if it stands for itself:</p>
+                    <pre><code data-trim class="xml">
+&lt;a href="..."&gt;&lt;svg title="Find us on Twitter" role="img"&gt;
+    &lt;use xlink:href="icons.svg#twitter"&gt;
+&lt;/svg&gt;&lt;/a&gt;
+                    </code></pre>
                     <aside class="notes">
-                        show how to set fill and stroke with css
+                        if there is not enough time skip this section.
                     </aside>
                 </section>
 
                 <section>
-                    <h3>currentColor</h3>
-                    <aside class="notes">
-                        example utilizing CSS currentColor:
-                        fill: currentColor
-                        to inherit text color
-                    </aside>
+                    <h2>Coloring icons</h2>
+                    <div class="colored-icons">
+                        <svg><use xlink:href="#some-icon" /></svg>
+                        <svg><use xlink:href="#some-icon" /></svg>
+                        <svg><use xlink:href="#some-icon" /></svg>
+                    </div>
+                    <pre><code data-trim class="css">
+#inline-styled-svg {
+    fill: #66cc33;
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Styling limits</h2>
+                    <img src="assets/shadow_dom.png" alt="Embedded SVG symbols are handeled by browsers as shadow DOM">
+                    <p><small>Symbols are embedded as Shadow DOM elements.</small></p>
+                    <p>There is no cross browser compatible way of selecting child elements of a Shadow DOM element, yet.</p>
+                </section>
+
+                <section>
+                    <h2>CSS Trick: currentColor</h2>
+                    <pre><code data-trim class="css">
+.icon {
+    fill: currentColor;
+}
+                    </code></pre>
+                    <p>All icons then inherit the current text color.</p>
+                    <p><small>Works in all modern browsers and IE9+.</small></p>
+                </section>
+
+                <section>
+                    <h2>CSS Trick (2): Multi-color icons</h2>
+                    <svg style="fill: #66cc33;"><use xlink:href="#multicolor-icon" /></svg>
+                    <pre><code data-trim class="xml">
+<!-- in SVG spritesheet -->
+&lt;symbol id="multicolor-icon"
+    viewBox="0 0 100 100"
+    enable-background="new 0 0 100 100"&gt;
+    &lt;path .../&gt;
+    &lt;rect style="fill: currentColor;" .../&gt;
+    &lt;rect style="fill: currentColor;" .../&gt;
+&lt;/symbol&gt;
+
+<!-- actual usage -->
+&lt;svg style="fill: #66cc33; color: #333333;"&gt;&lt;use xlink:href="#multicolor-icon" /&gt;&lt;/svg&gt;
+                    </code></pre>
+                    <p>Use a combination of currentColor and fill.</p>
                 </section>
 
                 <section data-state="highlight">
